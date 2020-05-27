@@ -7,7 +7,8 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   loggedIn = false;
-  public baseUrl = 'http://localhost:5000/api/v1'
+  public baseUrl = 'http://api.awzing.store/api/v1'
+ //public baseUrl = 'http://localhost:5000/api/v1'
 
 
   constructor(public _http:HttpClient){}

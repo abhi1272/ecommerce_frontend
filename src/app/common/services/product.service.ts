@@ -13,8 +13,8 @@ import { retry, catchError } from 'rxjs/operators';
 })
 export class ProductService {
 
-  //public baseUrl = 'http://api.awzing.com/api/v1'
-  public baseUrl = 'http://localhost:5000/api/v1'
+  public baseUrl = 'http://api.awzing.store/api/v1'
+  // public baseUrl = 'http://localhost:5000/api/v1'
   
 
   constructor(public _http:HttpClient) { }
