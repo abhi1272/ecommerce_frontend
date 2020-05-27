@@ -1,0 +1,22 @@
+.welimg{
+    margin: 7vh 0vw 0 0;
+
+}
+.portfolio-item{
+    margin-bottom: 2vh;
+}
+.about{
+    font-size: 1.2rem;
+    margin: 2vh;
+    padding: 4vh;
+    font-family: Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.readMore{
+    margin-top: -1vh 10vw;
+}
+.ourProduct{
+    font-size: 2rem;
+    font-family: Helvetica, sans-serif;
+    margin-bottom: 3vh;
+    color:#2E8B57;
+}

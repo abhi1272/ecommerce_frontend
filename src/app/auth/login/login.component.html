@@ -1,0 +1,61 @@
+<body>
+  <div id="logreg-forms" *ngIf="loginFlag">
+    <form class="form-signin signup-form" (ngSubmit)="submitLoginForm(f)" #f="ngForm">
+      <h2>Login</h2>
+      <h1 class="h3 mb-3 font-weight-normal" style="text-align: center"> Sign in</h1>
+      <div class="social-login">
+        <button class="btn facebook-btn social-btn" type="button"><span><i class="fab fa-facebook-f"></i> Sign in with
+            Facebook</span> </button>
+        <button class="btn google-btn social-btn" type="button"><span><i class="fab fa-google-plus-g"></i> Sign in with
+            Google+</span> </button>
+      </div>
+      <p style="text-align:center"> OR </p>
+      <div class="form-group">
+        <input type="email" class="form-control" name="email" placeholder="Email" required="required" ngModel>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" name="password" placeholder="Password" required="required" ngModel>
+      </div>
+      <button [disabled]="!f.valid" class="btn btn-success btn-block" type="submit"><i class="fas fa-sign-in-alt"></i> Sign in</button>
+      <a href="#" id="forgot_pswd">Forgot password?</a>
+      <hr>
+      <!-- <p>Don't have an account!</p>  -->
+      <button class="btn btn-primary btn-block" type="button" id="btn-signup" (click)="goToSignUp()"><i class="fas fa-user-plus"></i> Sign up
+        New Account</button>
+    </form>
+    <br>
+
+  </div>
+  <div class="signup-form" *ngIf="!loginFlag">
+    <form (ngSubmit)="submitSignUpForm(f)" #f="ngForm">
+      <h2>Register</h2>
+      <p class="hint-text">Create your account. It's free and only takes a minute.</p>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6"><input type="text" class="form-control" name="first_name" for="first_name" placeholder="First Name"
+              required="required" ngModel></div>
+          <div class="col-sm-6"><input type="text" class="form-control" name="last_name" for="last_name" placeholder="Last Name"
+              required="required" ngModel></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <input type="email" class="form-control" name="email" placeholder="Email" for="email" required="required" ngModel>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="mobile_number" placeholder="Mobile Number" for="mobile_number" required="required" ngModel>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" name="password" placeholder="Password" for="password" required="required" ngModel>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" for="confirm_password"
+          required="required" ngModel>
+      </div>
+      <div class="form-group">
+        <button type="submit" [disabled]="!f.valid" class="btn btn-success btn-lg btn-block">Register Now</button>
+      </div>
+    </form>
+    <div class="text-center">Already have an account? <a href="#">Sign in</a></div>
+  </div>
+
+</body>
