@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/common/services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GlobalService } from 'src/app/shared/global.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(public authService:AuthService,public router:Router) { }
+  constructor(public authService:AuthService,public router:Router,public globalService:GlobalService) { }
 
   loginFlag = true;
   ngOnInit() {
@@ -43,6 +44,12 @@ export class LoginComponent implements OnInit {
   submitLoginForm(f:NgForm){
     this.authService.login(f.value).subscribe((data)=>{
       console.log(data)
+      let userObj = {
+        user:data['data']['user'],
+        token:data['data']['token']
+      }
+      localStorage.setItem('user', JSON.stringify(userObj));
+      this.globalService.loggedInUser = true;
       this.router.navigate(['/home'])
     },(error)=>{
       console.log(error)

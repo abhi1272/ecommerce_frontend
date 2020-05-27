@@ -9,10 +9,10 @@ import { ProductCreateComponent } from 'src/app/product/product-create/product-c
 })
 export class ShowTableComponent implements OnInit {
 
-private columnDefs = [];
-private rowData = [];
-private paginationPageSize;
-private paginationNumberFormatter
+public columnDefs = [];
+public rowData = [];
+public paginationPageSize;
+public paginationNumberFormatter
   @Input() apiData: any;
 
   // @Output() paginationData = new EventEmitter();
