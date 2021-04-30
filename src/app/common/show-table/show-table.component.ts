@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import { ProductCreateComponent } from 'src/app/product/product-create/product-create.component';
+import { InputFormComponent } from '../input-form/input-form.component';
 
 @Component({
   selector: 'app-show-table',
@@ -24,25 +25,21 @@ public paginationNumberFormatter
   }
 
   createConfig(){
-      Object.keys(this.apiData['data'][0]).forEach((item)=>{
-        if(item !== '_id' && item !== '__v'){
-          this.columnDefs.push({field:item, sortable: true, filter: true})
-        }
-        this.paginationPageSize = 15;
-        this.paginationNumberFormatter = function(params) {
-          console.log(params)
-          return '[' + params.value.toLocaleString() + ']';
-        };
-      })
-      this.columnDefs[0]['checkboxSelection'] = true
-      this.rowData = this.apiData['data']
-      console.log(this.columnDefs,this.rowData)
+    this.columnDefs =  this.apiData.columnDefs
+    this.columnDefs[0]['checkboxSelection'] = true
+    this.rowData = this.apiData.length > 0?this.apiData:this.apiData['data']
+    console.log(this.columnDefs,this.rowData)
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(ProductCreateComponent, {
-      width: '250px',
-      data: {name: 'aa', animal: "tiger"}
+
+    delete this.apiData.data
+
+    const dialogRef = this.dialog.open(InputFormComponent, {
+      maxWidth: '100vw',
+      width: '500px',
+      maxHeight: '600px',
+      data: this.apiData
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -1,0 +1,71 @@
+<div class="container" *ngIf="productService.storedProductList">
+
+  <div class="row" style="margin-top: 10vh;">
+    <div class="col-lg-4">
+      <div class="card">
+        <img class="card-img-top img-fluid" [src]="product.image" alt="">
+        <div class="card-body">
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="">
+        <div class="card-body" style="font-size: 20px;padding: 40px;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+          <div>
+            <h4>
+              {{product.name}}
+            </h4>
+          </div>
+          <div style="color: skyblue;" class="mb-3">
+            Build in {{product.company}}
+          </div>
+          <div class="mb-3">
+            Rating: {{product.Rating}} 
+            <span class="material-icons-outlined">
+              star
+            </span>
+          </div>
+          <div class="mb-3">
+            Pack Size: 100 Ml
+          </div>
+          <div class="row">
+            <div class="col-sm-8">
+                MRP: &#8377; {{product.MRP}}
+            </div>
+            <div class="col-sm-4">
+              <button class="btn btn-primary">Add Cart</button>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <h6 class="mt-4 ml-4">Description</h6>
+  </div>
+  <div class="row ml-2" style="padding: 5px;">
+    {{product.Description}}
+  </div>
+  <div class="row">
+    <h6 class="mt-4 ml-4">Similar Products</h6>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-2" *ngFor="let prod of productService.storedProductList | slice : 0:4">
+      <div class="card">
+        <a><img routerLink="view/{{prod.id}}" class="card-img-top"
+            [src]="prod.image" alt=""></a>
+        <div class="card-title text-center">
+          <a style="color: black;font-size: 1.1em; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" href="#">{{prod.name | uppercase}}</a>
+        </div>
+          <span style="padding: 5px;" class="ml-1">
+            MRP: &#8377; {{prod.MRP}}
+          </span>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<ngx-spinner></ngx-spinner>

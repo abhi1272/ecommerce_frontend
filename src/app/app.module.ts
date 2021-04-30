@@ -1,13 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
+import { NgxUiLoaderModule, NgxUiLoaderService } from "ngx-ui-loader";
 
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatNativeDateModule,MatFormFieldModule,MatInputModule,MatButtonModule } from "@angular/material";
-
+import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatNativeDateModule,MatFormFieldModule,MatInputModule,MatButtonModule, MatSelectModule } from "@angular/material";
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import 'hammerjs';
 // import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
@@ -23,6 +25,23 @@ import { AuthGuard } from './common/services/auth-guard.service';
 import { AuthService } from './common/services/auth.service';
 import { ShowTableComponent } from './common/show-table/show-table.component';
 import { AppRoutingModule } from './app-routing.module';
+import { NgxGalleryModule } from 'ngx-gallery';
+import { GalleryComponent } from './common/gallery/gallery.component';
+import { ProductViewComponent } from './product/product-view/product-view.component';
+import { CustomerComponent } from './cutomer/customer/customer.component';
+import { CustomerListComponent } from './cutomer/customer-list/customer-list.component';
+import { CustomerViewComponent } from './cutomer/customer-view/customer-view.component';
+import { CustomerCreateComponent } from './cutomer/customer-create/customer-create.component';
+import { BillListComponent } from './bill/bill-list/bill-list.component';
+import { BillViewComponent } from './bill/bill-view/bill-view.component';
+import { CashbookListComponent } from './cashbook/cashbook-list/cashbook-list.component';
+import { CashbookCreateComponent } from './cashbook/cashbook-create/cashbook-create.component';
+import { InputFormComponent } from './common/input-form/input-form.component';
+import { LoaderComponent } from './common/loader/loader.component';
+import { LoaderInterceptor } from './_helper/loader.intercepator';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
+import { SharedService } from './common/services/shared.service';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 
@@ -37,7 +56,20 @@ import { AppRoutingModule } from './app-routing.module';
     NotFoundComponent,
     LoginComponent,
     ProductCreateComponent,
-    ShowTableComponent
+    ShowTableComponent,
+    GalleryComponent,
+    ProductViewComponent,
+    CustomerComponent,
+    CustomerListComponent,
+    CustomerViewComponent,
+    CustomerCreateComponent,
+    BillListComponent,
+    BillViewComponent,
+    CashbookListComponent,
+    CashbookCreateComponent,
+    InputFormComponent,
+    LoaderComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -47,8 +79,13 @@ import { AppRoutingModule } from './app-routing.module';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    NgxMatSelectSearchModule,
     MatNativeDateModule,
     MatButtonModule,
+    NgxGalleryModule,
+    NgxSpinnerModule,
+    NgxUiLoaderModule,
+    ReactiveFormsModule,
     AgGridModule.withComponents([]),
     // ToastrModule.forRoot({
     //   timeOut: 5000,
@@ -57,10 +94,17 @@ import { AppRoutingModule } from './app-routing.module';
     // }),
     AppRoutingModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   entryComponents: [
-    ProductCreateComponent
+    ProductCreateComponent,
+    InputFormComponent
   ],
-  providers: [AuthGuard, AuthService],
+  providers: [AuthGuard, AuthService,NgxSpinnerService,SharedService,
+    NgxUiLoaderService,
+    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true },
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

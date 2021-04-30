@@ -18,8 +18,21 @@ export class ProductListViewComponent implements OnInit {
 
   getProductData(){
     this.productService.getProduct().subscribe((data)=>{
-      this.productData = data
-      console.log(data)
+      const fetchedData = data[0]?data[0]:data['data'][0]
+      const columnDefs = []
+      const allowedKeys = ['productName','company','MRP','Rate'] 
+      Object.keys(fetchedData).forEach((item)=>{
+        if(allowedKeys.includes(item)){
+           columnDefs.push({field:item, sortable: true, filter: true})
+        }
+      })
+      this.productData = {
+        data : Array.isArray(data)?data:data['data'],
+        columnDefs: columnDefs,
+        page_name: 'Product',
+        page_key: 'product'
+
+      } 
     },(error)=>{
       console.log(error)
     })

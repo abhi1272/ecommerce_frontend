@@ -1,0 +1,113 @@
+<div mat-dialog-content *ngIf="data.page_key === 'product'">
+    <form [formGroup]="inputForm">
+        <div class="form-group">
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Name:</label>
+                <input type="text" class="form-control col-sm-6 mb-4" formControlName="productName">
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Company:</label>
+                <select class="form-control col-sm-6 mb-4" formControlName="company">
+                    <option *ngFor="let comp of companyNames" [value]="comp">{{comp}}</option>
+                </select>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Mrp:</label>
+                <input class="form-control col-sm-6 mb-4" type="text" placeholder="Mrp" formControlName="MRP">
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Rate:</label>
+                <input class="form-control col-sm-6 mb-4" type="text" placeholder="Rate" formControlName="Rate">
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Image:</label>
+                <input class="form-control col-sm-6 mb-4" type="file" (change)="handleFileInput($event.target.files)">
+            </div>
+        </div>
+        <div class="pull-right">
+            <button mat-raised-button color="primary" [disabled]="!inputForm.valid" type="submit" (click)="submit()"
+                class="mr-4 ml-4">Save</button>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-content *ngIf="data.page_key === 'customer'">
+    <form [formGroup]="inputForm">
+        <div class="form-group">
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Name:</label>
+                <input type="text" class="form-control col-sm-6 mb-4" formControlName="Customer_Name">
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Place:</label>
+                <select class="form-control col-sm-6 mb-4" formControlName="Place">
+                    <option *ngFor="let place of placeNames" [value]="place">{{place}}</option>
+                </select>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Address:</label>
+                <input class="form-control col-sm-6 mb-4" type="text" placeholder="address" formControlName="address">
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Phone Number:</label>
+                <input class="form-control col-sm-6 mb-4" type="text" placeholder="Phone Number" formControlName="phoneNumber">
+            </div>
+        </div>
+        <div class="pull-right">
+            <button mat-raised-button color="primary" [disabled]="!inputForm.valid" type="submit" (click)="submit()"
+                class="mr-4 ml-4">Save</button>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-content *ngIf="data.page_key === 'bill' && customerNames">
+    <form [formGroup]="inputForm">
+        <div class="form-group">
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Customer Name:</label>
+                <select class="form-control col-sm-6 mb-4" formControlName="Customer">
+                    <option *ngFor="let customer of customerNames" [value]="customer.Customer_Name">{{customer.Customer_Name}}</option>
+                </select>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Bill No:</label>
+                <input class="form-control col-sm-6 mb-4" type="text" placeholder="Bill No" formControlName="Bill_No">
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Bill Amount:</label>
+                <input class="form-control col-sm-6 mb-4" type="text" placeholder="Bill Amount" formControlName="billAmount">
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Image:</label>
+                <input class="form-control col-sm-6 mb-4" type="file" (change)="handleFileInput($event.target.files)">
+            </div>
+        </div>
+        <div class="pull-right">
+            <button mat-raised-button color="primary" [disabled]="!inputForm.valid" type="submit" (click)="submit()"
+                class="mr-4 ml-4">Save</button>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-content *ngIf="data.page_key === 'payment' && customerNames">
+    <form [formGroup]="inputForm">
+        <div class="form-group">
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Customer Name:</label>
+                <select class="form-control col-sm-6 mb-4" formControlName="customerName">
+                    <option *ngFor="let customer of customerNames" [value]="customer.Customer_Name">{{customer.Customer_Name}}</option>
+                </select>
+            </div>
+            <div class="row">
+                <label class="col-sm-4 col-form-label">Amount:</label>
+                <input class="form-control col-sm-6 mb-4" type="text" placeholder="Amount" formControlName="paidAmount">
+            </div>
+        </div>
+        <div class="pull-right">
+            <button mat-raised-button color="primary" [disabled]="!inputForm.valid" type="submit" (click)="submit()"
+                class="mr-4 ml-4">Save</button>
+        </div>
+    </form>
+</div>
+
+<ngx-spinner></ngx-spinner>

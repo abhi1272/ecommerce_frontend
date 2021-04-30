@@ -1,6 +1,7 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
   <div class="container navbar-inner">
-    <a class="navbar-brand img-fluid" routerLink="/home"><img class="logo img-responsive" src=""></a>
+    <a class="navbar-brand img-fluid" routerLink="/home"><img class="logo img-responsive" src="">ePharmacy</a>
+    <input placeholder="search.." class="search form-control">
     <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isCollapsed = !isCollapsed" data-toggle="collapse"
       data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -11,8 +12,12 @@
         <li class="nav-item" ><a class="nav-link font-weight-bold" routerLinkActive="active" routerLink="/product">Product</a></li>
         <li class="nav-item" ><a class="nav-link font-weight-bold" routerLinkActive="active" routerLink="/contact">Contact</a></li>
         <li class="nav-item" ><a class="nav-link font-weight-bold" *ngIf="!globalService.loggedInUser" routerLinkActive="active" routerLink="/login">Login</a></li>
-        <li class="nav-item" ><a class="nav-link font-weight-bold" *ngIf="globalService.loggedInUser" routerLinkActive="active" (click)="logout()">Logout</a></li>
-        <li class="nav-item" ><a class="nav-link font-weight-bold" routerLinkActive="active" routerLink="/cart">Cart</a></li>
+        <li class="nav-item" ><a class="nav-link font-weight-bold" *ngIf="!globalService.loggedInUser" routerLinkActive="active" routerLink="/register">Signup</a></li>
+        <!-- <li class="nav-item" ><a class="nav-link font-weight-bold" *ngIf="globalService.loggedInUser" routerLinkActive="active" (click)="logout()">Logout</a></li> -->
+        <!-- <li class="nav-item" ><a class="nav-link font-weight-bold" routerLinkActive="active" routerLink="/gallery">Gallery</a></li> -->
+        <!-- <li class="nav-item" ><a class="nav-link font-weight-bold" routerLinkActive="active" routerLink="/customer-list">Customer</a></li> -->
+        <!-- <li class="nav-item" ><a class="nav-link font-weight-bold" routerLinkActive="active" routerLink="/bill-list">Bill</a></li> -->
+        <!-- <li class="nav-item" ><a class="nav-link font-weight-bold" routerLinkActive="active" routerLink="/cashbook-list">Cashbook</a></li> -->
       </ul>
     </div>
   </div>
@@ -20,49 +25,41 @@
 <br><br>
 <div class="main">
   <router-outlet></router-outlet>
+  <!-- <app-loading></app-loading> -->
 </div>
 <!-- Footer -->
-<!-- <footer class="footer-distributed row">
-
-  <div class="footer-left col-md-5">
-
-    <h3>Awzing<span></span></h3>
-
-    <p class="footer-links">
-      <a routerLink="/home">Home</a> ·
-      <a routerLink="/about">About</a> ·
-      <a routerLink="/product">Product</a>.
-      <a routerLink="/contact">Contact</a>
-    </p>
-
-    <p class="footer-company-name">Awzing Healthcare pvt. ltd. &copy; 2018</p>
-
-    <div class="footer-icons">
-
-
-      <a href="https://www.facebook.com/AwzingPvt/"><i class="fa fa-facebook"></i></a>
-
-    </div>
-
+<footer>
+  <div id="container">
+      <div id="part1">
+          <div id="companyinfo"> <a id="sitelink" href="#">ePharmacy</a>
+              <p id="title">Working together for a healthier world.</p>
+          </div>
+          <div id="explore">
+              <p id="txt1">Explore</p> 
+              <a class="link" [routerLink]="['/product']" routerLinkActive="router-link-active" >Product</a>
+              <a class="link" [routerLink]="['/order']" routerLinkActive="router-link-active" >Order</a>
+              <a class="link" [routerLink]="['/login']" routerLinkActive="router-link-active" >Login</a>
+              <a class="link" [routerLink]="['/register']" routerLinkActive="router-link-active" >Signup</a>
+          </div>
+          <div id="visit">
+              <p id="txt2">Visit</p>
+              <p class="text">Lincoln House </p>
+              <p class="text">78 Bhulabhai Desai Road </p>
+              <p class="text">Pune 410 057 </p>
+              <p class="text">Phone: (22) 2363-3611 </p>
+              <p class="text">Fax: (22) 2363-0350 </p>
+          </div>
+          <div id="legal">
+              <p id="txt3">Legal</p> <a class="link1" href="#">Terms and Conditions</a> <a class="link1" href="#">Private Policy</a>
+          </div>
+          <div id="subscribe">
+              <p id="txt4">Subscribe to US</p>
+              <form class="mt-2"> <input id="email" type="email" placeholder="Email"> </form> <a class="waves-effect waves-light btn">Subscribe</a>
+              <p id="txt5">Connect With US</p> <i class="fab fa-facebook-square social fa-2x"></i> <i class="fab fa-linkedin social fa-2x"></i> <i class="fab fa-twitter-square social fa-2x"></i>
+          </div>
+      </div>
+      <div id="part2">
+          <p id="txt6"><i class="material-icons tiny"> copyright</i>copyright 2021 kite  - All right reserved</p>
+      </div>
   </div>
-
-  <div class="footer-center col-md-4">
-
-    <div>
-      <i class="fa fa-map-marker"></i>
-      <p><span>S.NO, Haripur,Sector-4</span> Panchkula(HR), India</p>
-    </div>
-
-    <div>
-      <i class="fa fa-envelope"></i>
-      <p><a href="mailto:support@company.com">support@awzing.com</a></p>
-    </div>
-
-  </div>
-
-  <div class="footer-right col-md-3">
-
-    <img style="height:180px;margin-left:35px" src="./assets/img/logos/thank.jpg">
-  </div>
-
-</footer> -->
+</footer>
