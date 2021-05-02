@@ -4,14 +4,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
-import { NgxUiLoaderModule, NgxUiLoaderService } from "ngx-ui-loader";
+import { NgxUiLoaderModule, NgxUiLoaderService } from 'ngx-ui-loader';
 
 import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { MatButtonModule } from "@angular/material/button";
-import { MatNativeDateModule } from "@angular/material/core";
-import { MatFormFieldModule } from "@angular/material/form-field";
-import { MatInputModule } from "@angular/material/input";
-import { MatSelectModule } from "@angular/material/select";
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 // import { ToastrModule } from 'ngx-toastr';
 
@@ -20,7 +19,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductComponent } from './product/product.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
-import {NotFoundComponent} from "./not-found/not-found.component";
+import {NotFoundComponent} from './not-found/not-found.component';
 import { ProductListViewComponent } from './product/product-list-view/product-list-view.component';
 import { LoginComponent } from './auth/login/login.component';
 import { ProductCreateComponent } from './product/product-create/product-create.component';
@@ -28,7 +27,6 @@ import { AuthGuard } from './common/services/auth-guard.service';
 import { AuthService } from './common/services/auth.service';
 import { ShowTableComponent } from './common/show-table/show-table.component';
 import { AppRoutingModule } from './app-routing.module';
-import { NgxGalleryModule } from 'ngx-gallery';
 import { GalleryComponent } from './common/gallery/gallery.component';
 import { ProductViewComponent } from './product/product-view/product-view.component';
 import { CustomerComponent } from './cutomer/customer/customer.component';
@@ -85,12 +83,11 @@ import { RegisterComponent } from './auth/register/register.component';
     NgxMatSelectSearchModule,
     MatNativeDateModule,
     MatButtonModule,
-    NgxGalleryModule,
     NgxSpinnerModule,
     NgxUiLoaderModule,
     ReactiveFormsModule,
     AgGridModule.withComponents([]),
-    // ToastrModule.forRoot({
+    // ToastsModule.forRoot({
     //   timeOut: 5000,
     //   positionClass: 'toast-top-right',
     //   preventDuplicates: true,
