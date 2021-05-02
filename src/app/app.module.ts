@@ -7,9 +7,12 @@ import { AgGridModule } from 'ag-grid-angular';
 import { NgxUiLoaderModule, NgxUiLoaderService } from "ngx-ui-loader";
 
 import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import {MatNativeDateModule,MatFormFieldModule,MatInputModule,MatButtonModule, MatSelectModule } from "@angular/material";
+import { MatButtonModule } from "@angular/material/button";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-import 'hammerjs';
 // import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
