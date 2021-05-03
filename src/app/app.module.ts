@@ -5,6 +5,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgGridModule } from 'ag-grid-angular';
 import { NgxUiLoaderModule, NgxUiLoaderService } from 'ngx-ui-loader';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 import {MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
@@ -43,6 +44,7 @@ import { LoaderInterceptor } from './_helper/loader.intercepator';
 import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 import { SharedService } from './common/services/shared.service';
 import { RegisterComponent } from './auth/register/register.component';
+import { CreateComponent } from './common/modals/create/create.component';
 
 
 
@@ -70,7 +72,8 @@ import { RegisterComponent } from './auth/register/register.component';
     CashbookCreateComponent,
     InputFormComponent,
     LoaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    CreateComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +89,7 @@ import { RegisterComponent } from './auth/register/register.component';
     NgxSpinnerModule,
     NgxUiLoaderModule,
     ReactiveFormsModule,
+    AutocompleteLibModule,
     AgGridModule.withComponents([]),
     // ToastsModule.forRoot({
     //   timeOut: 5000,

@@ -1,7 +1,25 @@
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark">
   <div class="container navbar-inner">
     <a class="navbar-brand img-fluid" routerLink="/home"><img class="logo img-responsive" src="">ePharmacy</a>
-    <input placeholder="search.." class="search form-control">
+    <div class="ng-autocomplete">
+      <ng-autocomplete 
+        [data]="productService.storedProductList"
+        [searchKeyword]="keyword"
+        (selected)='selectEvent($event)'
+        (inputChanged)='onChangeSearch($event)'
+        (inputFocused)='onFocused($event)'
+        [itemTemplate]="itemTemplate"
+        [notFoundTemplate]="notFoundTemplate">                                 
+      </ng-autocomplete>
+      
+      <ng-template #itemTemplate let-item>
+      <a [innerHTML]="item.name"></a>
+      </ng-template>
+      
+      <ng-template #notFoundTemplate let-notFound>
+      <div [innerHTML]="notFound"></div>
+      </ng-template>
+      </div>
     <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isCollapsed = !isCollapsed" data-toggle="collapse"
       data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
