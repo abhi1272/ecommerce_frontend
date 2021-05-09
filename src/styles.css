@@ -26,3 +26,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     text-decoration: underline;
     color: grey;
 }
+
+.cursor-pointer{
+    cursor: pointer;
+}

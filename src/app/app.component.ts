@@ -11,15 +11,19 @@ import { GlobalService } from './shared/global.service';
 export class AppComponent implements OnInit{
   title = 'app';
   isCollapsed;
+  user
  
   constructor(public globalService: GlobalService, public productService: ProductService,
               public router: Router){}
   keyword = 'name';
   ngOnInit(){
+    this.user = JSON.parse(localStorage.getItem('user'))
+    console.log(this.user)
   }
 
   public logout(){
-    localStorage.clear();
+    localStorage.clear()
+    this.router.navigate(['/login'])
     this.globalService.loggedInUser = false;
   }
 

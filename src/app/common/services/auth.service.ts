@@ -8,13 +8,13 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   loggedIn = false;
   // public baseUrl = 'http://api.awzing.store/api/v1'
- public baseUrl = 'http://localhost:4000/api/v1'
+  public baseUrl = 'http://localhost:4000/api/v1'
 
 
-  constructor(public _http:HttpClient){}
+  constructor(public _http: HttpClient) { }
 
-  isAutinticated(){
-    const promise = new Promise((resolve,reject) =>{
+  isAutinticated() {
+    const promise = new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(this.loggedIn);
       }, 800);
@@ -23,18 +23,16 @@ export class AuthService {
   }
 
 
-  login(loginData){
-    let myResponse = this._http.post(this.baseUrl+'/users/login',loginData)
-    this.loggedIn = true;
-    return myResponse
+  login(loginData) {
+    this.loggedIn = true
+    return this._http.post(this.baseUrl + '/users/login', loginData)
   }
 
-  logout(){
+  logout() {
     // this.loggedIn = false;
   }
 
-  signUP(signUpData){
-    let myResponse = this._http.post(this.baseUrl+'/users/signup',signUpData)
-    return myResponse
+  signUP(signUpData) {
+    return this._http.post(this.baseUrl + '/users/signup', signUpData)
   }
 }

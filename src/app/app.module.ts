@@ -13,7 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
-// import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -91,11 +91,7 @@ import { CreateComponent } from './common/modals/create/create.component';
     ReactiveFormsModule,
     AutocompleteLibModule,
     AgGridModule.withComponents([]),
-    // ToastsModule.forRoot({
-    //   timeOut: 5000,
-    //   positionClass: 'toast-top-right',
-    //   preventDuplicates: true,
-    // }),
+    ToastrModule.forRoot(),
     AppRoutingModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

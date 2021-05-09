@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/common/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -8,8 +11,9 @@ import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  registerForm: FormGroup;
-  constructor() { }
+  registerForm: FormGroup
+  constructor(public authService: AuthService, private toastr: ToastrService,
+              public router: Router) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -18,11 +22,17 @@ export class RegisterComponent implements OnInit {
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
       confirmPassword: new FormControl('', Validators.required)
-    });
+    })
   }
 
-  public submit(){
-    console.log(this.registerForm.value)
+  public submit() {
+    this.authService.signUP(this.registerForm.value).subscribe((data) => {
+      localStorage.setItem('user', JSON.stringify(data['data']['newUser']))
+      this.toastr.success(data['message'])
+      this.router.navigate(['/home'])
+    }, (error) => {
+      this.toastr.success(error)
+    })
   }
 
 }
