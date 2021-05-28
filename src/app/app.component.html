@@ -1,0 +1,115 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark">
+  <div class="container navbar-inner">
+    <a class="navbar-brand img-fluid" routerLink="/home"><img class="logo img-responsive" src="">ePharmacy</a>
+
+    <button class="navbar-toggler navbar-toggler-right" type="button" (click)="isCollapsed = !isCollapsed"
+      data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse" [attr.aria-expanded]="!isCollapsed" [ngClass]="{collapse: !isCollapsed}">
+      <div class="ng-autocomplete ml-4">
+        <ng-autocomplete
+          [data]="products"
+          [searchKeyword]="keyword"
+          placeholder="Enter the Medicine Name"
+          (selected)='selectEvent($event)'
+          (inputChanged)='onChangeSearch($event)'
+          historyIdentifier="products"
+          [itemTemplate]="itemTemplate"
+          [notFoundTemplate]="notFoundTemplate">
+        </ng-autocomplete>
+
+        <ng-template #itemTemplate let-item>
+          <a [innerHTML]="item.medicine_name"></a>
+        </ng-template>
+
+        <ng-template #notFoundTemplate let-notFound>
+          <div [innerHTML]="notFound"></div>
+        </ng-template>
+      </div>
+      <ul class="nav navbar-nav ml-auto" (click)="isCollapsed = !isCollapsed">
+        <li class="nav-item"><a class="nav-link font-weight-bold" routerLinkActive="active" routerLink="/home">Home</a>
+        </li>
+        <li class="nav-item"><a class="nav-link font-weight-bold" routerLinkActive="active"
+            routerLink="/product">Product</a></li>
+        <li class="nav-item"><a class="nav-link font-weight-bold" routerLinkActive="active"
+            routerLink="/contact">Contact</a></li>
+        <li class="nav-item cursor-pointer" *ngIf="!authService.user"><a routerLink="/login" class="nav-link font-weight-bold" routerLinkActive="active"
+            >Login</a></li>
+        <!-- <li class="nav-item" *ngIf="authService.user"><a class="nav-link font-weight-bold cursor-pointer" routerLinkActive="active"
+            (click)="logout()">Logout</a></li> -->
+        <li class="nav-item"><a class="nav-link font-weight-bold" routerLinkActive="active"
+            routerLink="/cart">Cart
+            <span *ngIf="sharedService.cartCount" class="badge badge-info">{{sharedService.cartCount}}</span></a>
+          </li>
+        <li class="nav-item"><a class="nav-link font-weight-bold" routerLinkActive="active"routerLink="/product-list">Medicines</a></li>
+        <!-- <li class="nav-item"><a class="nav-link font-weight-bold" routerLinkActive="active"
+            routerLink="/pharmacist-list">Pharmacist</a></li>
+        <li class="nav-item"><a class="nav-link font-weight-bold" routerLinkActive="active" routerLink="/user-list">Users</a>
+        </li>
+        <li class="nav-item"><a class="nav-link font-weight-bold" routerLinkActive="active" routerLink="/role-list">Roles</a>
+        </li>
+        <li class="nav-item"><a class="nav-link font-weight-bold" routerLinkActive="active" routerLink="/category-list">Category</a>
+        </li> -->
+        <li class="nav-item" *ngIf="authService.user">
+          <div class="dropdown nav-link">
+            <button class="btn" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img style="width: 1.2vw;border-radius: 50%;" src="../assets/img/user-icon.jpg" class="img-reponsive">
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item">{{authService.user.firstName}}</a>
+              <a class="dropdown-item cursor-pointer"routerLink="/order">Orders</a>
+              <a class="dropdown-item cursor-pointer"(click)="logout()">Logout</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<br><br>
+<div class="main">
+  <router-outlet></router-outlet>
+  <!-- <app-loading></app-loading> -->
+</div>
+<!-- Footer -->
+<footer>
+  <div id="container">
+    <div id="part1">
+      <div id="companyinfo"> <a id="sitelink" href="#">ePharmacy</a>
+        <p id="title">Working together for a healthier world.</p>
+      </div>
+      <div id="explore">
+        <p id="txt1">Explore</p>
+        <a class="link" [routerLink]="['/product']" routerLinkActive="router-link-active">Product</a>
+        <a class="link" [routerLink]="['/order']" routerLinkActive="router-link-active">Order</a>
+        <a class="link" (click)="openLogin()">Login</a>
+        <a class="link" [routerLink]="['/register']" routerLinkActive="router-link-active">Signup</a>
+      </div>
+      <div id="visit">
+        <p id="txt2">Visit</p>
+        <p class="text">Lincoln House </p>
+        <p class="text">78 Bhulabhai Desai Road </p>
+        <p class="text">Pune 410 057 </p>
+        <p class="text">Phone: (22) 2363-3611 </p>
+        <p class="text">Fax: (22) 2363-0350 </p>
+      </div>
+      <div id="legal">
+        <p id="txt3">Legal</p> <a class="link1" href="#">Terms and Conditions</a> <a class="link1" href="#">Private
+          Policy</a>
+      </div>
+      <div id="subscribe">
+        <p id="txt4">Subscribe to US</p>
+        <form class="mt-2"> <input id="email" type="email" placeholder="Email"> </form> <a
+          class="waves-effect waves-light btn">Subscribe</a>
+        <p id="txt5">Connect With US</p> <i class="fab fa-facebook-square social fa-2x"></i> <i
+          class="fab fa-linkedin social fa-2x"></i> <i class="fab fa-twitter-square social fa-2x"></i>
+      </div>
+    </div>
+    <div id="part2">
+      <p id="txt6"><i class="material-icons tiny"> copyright</i>copyright 2021 kite - All right reserved</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,24 @@
+<div class="container mt-2">
+  <br>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" routerLinkActive="active"><a routerLink="/home" >Home</a></li>
+      <li class="breadcrumb-item" routerLinkActive="active" aria-current="page"><a>Product</a></li>
+    </ol>
+  </nav>
+  <br><br>
+    <div class="row">
+      <div class="col-md-3 col-sm-6 portfolio-item" *ngFor="let prod of productList">
+        <div class="card">
+          <a><img routerLink="{{prod.uuid}}" class="card-img-top"
+              [src]="prod.image" alt=""></a>
+          <div class="card-title text-center">
+            <a style="color: black;font-size: 1.1em; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" href="#">{{prod.medicine_name | uppercase}}</a>
+          </div>
+            <span style="padding: 5px;" class="ml-1">
+              MRP: &#8377; {{prod.MRP}}
+            </span>
+        </div>
+      </div>
+    </div>
+</div>
