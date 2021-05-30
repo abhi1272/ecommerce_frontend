@@ -55,6 +55,11 @@ export class CreateComponent implements OnInit {
         canAccessAll: new FormControl(''),
       })
     }
+    else if (this.data.data.config.page_key === 'category') {
+      this.createForm = new FormGroup({
+        name: new FormControl('', Validators.required),
+      })
+    }
     if (this.data.data.editData) {
       this.prePopulateData(this.data.data.editData)
     }

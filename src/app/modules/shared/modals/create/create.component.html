@@ -141,3 +141,18 @@
     </div>
   </form>
 </div>
+<div mat-dialog-content *ngIf="data.data.config && data.data.config.page_key === 'category'">
+  <form [formGroup]="createForm">
+    <div class="form-group">
+      <mat-form-field appearance="outline" class="col-sm-6">
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Placeholder" formControlName="name">
+      </mat-form-field>
+
+    </div>
+    <div align=end>
+      <button mat-raised-button mat-dialog-close (click)="cancel()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" (click)="submit()" class="mr-4 ml-4 mb-2">Save</button>
+    </div>
+  </form>
+</div>
