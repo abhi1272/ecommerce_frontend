@@ -7,6 +7,7 @@ import { PageEvent } from '@angular/material/paginator'
 import { MatTableDataSource } from '@angular/material/table'
 import { SharedService } from 'src/app/modules/shared/services/shared.service'
 import { CreateComponent } from '../../../modals/create/create.component'
+import { ToastrService } from 'ngx-toastr'
 
 
 @Component({
@@ -57,6 +58,7 @@ export class JsonTableCreationComponent implements OnInit, OnDestroy {
     public http: HttpClient,
     public sharedService: SharedService,
     public route: ActivatedRoute,
+    public toastr: ToastrService,
     public router: Router) { }
 
   ngOnInit(): void {
@@ -195,6 +197,7 @@ export class JsonTableCreationComponent implements OnInit, OnDestroy {
 
   getFilteredData(event): any {
     const dateColDateArr = this.configData.columns.filter(item => item.type && item.type.name === 'date').map(item => item.key)
+    event.data = event.data || []
     const apiResultData = event.data.map((element, i) => {
       dateColDateArr.forEach((item) => {
         element[item] = moment(element[item] * 1000).format(this.getDateFormat(item))
@@ -239,7 +242,7 @@ export class JsonTableCreationComponent implements OnInit, OnDestroy {
   add(key, page): any {
     const addObject = {
       page: page ? page : this.configData.page_name,
-      action: 'add',
+      action: 'Add',
       data: {
         config: (this.configData.external_actions &&
           this.configData.external_actions.find(item => item.page_key === key)) ?
@@ -258,18 +261,23 @@ export class JsonTableCreationComponent implements OnInit, OnDestroy {
   edit(ele): any{
     const editObject = {
       page: this.configData.page_name,
-      action: 'edit',
+      action: 'Edit',
       data: { config: this.configData, editData: ele },
       configData: this.configData
     }
-    this.sharedService.openDialog(editObject, CreateComponent , '700px').subscribe((data) => {
-      this.selection.clear()
+    this.sharedService.openDialog(editObject, CreateComponent , '600px').subscribe((data) => {
       this.refreshData(data)
     })
   }
 
-  delete(ele): any{
-    console.log(ele)
+  delete(ele): any {
+    this.sharedService.deleteEntityData(this.configData.page_key, ele.uuid).subscribe((data) => {
+      this.toastr.success('Delete successful')
+      this.refreshData(true)
+    }, (error) => {
+      this.toastr.success(error)
+      console.log(error)
+    })
   }
 
   refreshData(result): any {

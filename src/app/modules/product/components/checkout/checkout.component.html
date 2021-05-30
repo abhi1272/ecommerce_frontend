@@ -118,7 +118,7 @@
                     </select> </td>
                   <td>
                     <div class="price-wrap"> <span class="price">&nbsp;
-                        &#8377;{{cartItem.product.best_price*cartItem.quantity}}</span> <small class="text-muted">
+                        &#8377;{{cartItem.product.best_price*cartItem.quantity | number: '1.0-0'}}</span> <small class="text-muted">
                         &nbsp;
                         &#8377; {{cartItem.product.best_price}} each </small> </div>
                   </td>
