@@ -23,6 +23,10 @@ const routes: Routes = [
     component: ProductViewComponent
   },
   {
+    path: 'medicine/:id',
+    component: ProductViewComponent
+  },
+  {
     path: 'cart',
     component: CartComponent
   },

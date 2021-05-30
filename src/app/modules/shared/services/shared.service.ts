@@ -42,16 +42,34 @@ export class SharedService {
     return this.http.get(`${this.apiUrl}${api.api_url}?paql=${filter}`)
   }
 
+  getEntityData(entity): Observable<any> {
+    return this.http.get(`${this.apiUrl}/${entity}`)
+  }
+
   getDataById(model, uuid): Observable<any> {
     return this.http.get(`${this.apiUrl}/${model}/${uuid}`)
+  }
+
+
+  addEntityData(model, data): Observable<any> {
+    return this.http.post(`${this.apiUrl}/${model}/add`, data)
+  }
+
+  updateEntityData(model, uuid, data): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${model}/${uuid}`, data)
+  }
+
+  deleteEntityData(model, uuid): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${model}/${uuid}`)
   }
 
   public openDialog(data = {}, componentName, width = '500px'): any{
     const dialogRef = this.dialog.open(componentName, {
       width,
-      data
+      data,
+      disableClose: true
     })
-    return dialogRef
+    return dialogRef.afterClosed()
   }
 
   public getCartData(): any{

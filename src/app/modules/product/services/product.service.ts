@@ -21,8 +21,13 @@ export class ProductService {
 
   public createProduct(productData): any {
 
-    console.log('create product service call')
     const myResponse = this._http.post(this.baseUrl + '/product/add', productData)
+    return myResponse
+  }
+
+  public editProduct(productData, uuid): any {
+
+    const myResponse = this._http.put(this.baseUrl + `/product/${uuid}`, productData)
     return myResponse
   }
 
@@ -72,11 +77,11 @@ export class ProductService {
 
 
   public getUser(data): any{
-    return this._http.patch(this.baseUrl + '/users/profile', data)
+    return this._http.patch(this.baseUrl + '/user/profile', data)
   }
 
   public updateUser(data): Observable<any>{
-    return this._http.patch(this.baseUrl + '/users/profile', data)
+    return this._http.patch(this.baseUrl + '/user/profile', data)
   }
 
   public downloadBill(data): Observable<any>{

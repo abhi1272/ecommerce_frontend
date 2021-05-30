@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
   }
 
   selectEvent(item): void {
-    this.router.navigate([`/product/${item.uuid}`])
+    this.router.navigate([`/medicine/${item.uuid}`])
     item = ''
     // do something with selected item
   }
