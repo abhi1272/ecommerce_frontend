@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  url: 'http://localhost:4000/api/v1'
+  url: 'https://e-pharmacy-backend.vercel.app/api/v1'
 }
 
 /*

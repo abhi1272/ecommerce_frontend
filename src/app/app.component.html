@@ -8,7 +8,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse collapse" [attr.aria-expanded]="!isCollapsed" [ngClass]="{collapse: !isCollapsed}">
-      <div class="ng-autocomplete ml-4" *ngIf="authService.user && authService.user.roleName === 'User'">
+      <div class="ng-autocomplete ml-4" *ngIf="!authService.user || authService.user.roleName === 'User'">
         <ng-autocomplete
           [data]="products"
           [searchKeyword]="keyword"
