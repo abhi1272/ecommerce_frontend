@@ -29,7 +29,7 @@ export class ProductViewComponent implements OnInit {
       if (data.data) {
         this.product = this.dataCorrection(data.data)
         console.log(this.product)
-        this.discount = Math.round((this.product.best_price / this.product.MRP) * 10)
+        this.discount = Math.round(((this.product.MRP-this.product.best_price) / this.product.MRP) * 100)
       }
     }, (error) => {
       console.log(error)
