@@ -76,8 +76,8 @@ export class ProductService {
   }
 
 
-  public getUser(data): any{
-    return this._http.patch(this.baseUrl + '/user/profile', data)
+  public getUser(uuid): any{
+    return this._http.get(this.baseUrl + `/user/profile/${uuid}`)
   }
 
   public updateUser(data): Observable<any>{

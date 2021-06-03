@@ -18,6 +18,7 @@ export class CheckoutComponent implements OnInit {
   selectAddressFlag = false
   addNewAddressFlag = false
   orderPlaced = false
+  lastOrder
   constructor(public sharedService: SharedService, public productService: ProductService,
               public authService: AuthService, public toast: ToastrService) { }
 
@@ -118,7 +119,8 @@ export class CheckoutComponent implements OnInit {
     }
     this.productService.updateUser(userObj).subscribe((data) => {
       this.toast.success('Order Done successfully')
-      this.productService.getUser(userObj).subscribe((user) => {
+      this.productService.getUser(this.authService.user.uuid).subscribe((user) => {
+        this.lastOrder = user.orders[user.orders.length - 1]
         localStorage.removeItem('user')
         localStorage.setItem('user', JSON.stringify(user))
       })

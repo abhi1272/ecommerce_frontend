@@ -5,7 +5,7 @@
       <tr class="cursor-pointer" *ngFor="let userOrder of authService.user.orders">
         <th scope="row">
           <h2>#{{userOrder.time}}{{userOrder.orderNo}}</h2>
-          <p class="mute">{{userOrder.time | date:'medium'}}</p>
+          <p class="mute">{{userOrder.time*1000 | date:'medium'}}</p>
         </th>
         <td>
           <h2 class="mute">
@@ -29,11 +29,11 @@
           <span class="material-icons">
             chevron_right
           </span>
-          <div (click)="downloadBill(userOrder)">
+          <!-- <div (click)="downloadBill(userOrder)">
             <span matTooltip="Download Bill for the order" class="material-icons">
               download
             </span>
-          </div>
+          </div> -->
         </td>
       </tr>
     </tbody>

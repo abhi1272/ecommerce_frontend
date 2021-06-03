@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { FileUploaderComponent } from 'src/app/modules/shared/modals/file-uploader/file-uploader.component';
 import { SharedService } from 'src/app/modules/shared/services/shared.service';
 
@@ -10,7 +11,8 @@ import { SharedService } from 'src/app/modules/shared/services/shared.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, public sharedService: SharedService) { }
+  constructor(public dialog: MatDialog, public sharedService: SharedService,
+              public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +23,11 @@ export class HomeComponent implements OnInit {
     value.afterClosed().subscribe(result => {
       console.log('The dialog was closed')
     })
+  }
+
+  getCategoryDat(value): void {
+    // this.sharedService.filterObj.filters.push({ name: 'category', value })
+    this.router.navigate(['/product'], { queryParams: { category: value } })
   }
 
 }

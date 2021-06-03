@@ -20,10 +20,10 @@
           </div>
          </div>
       </div>
-      <button *ngIf="authService.user.address.length > 0" (click)="placeOrder()" class="btn btn-primary float-right ml-2">Place Order</button>
-      <!-- <button *ngIf="authService.user.address.length > 0" class="btn btn-primary" (click)="goBackToAddress()" style="float: right;">Back To Address</button> -->
-      <button *ngIf="authService.user.address.length ===0" (click)="addNewAddress()" class="btn btn-primary float-right mt-4">Add Address</button>
-      <button  *ngIf="authService.user.address.length > 0" (click)="editAddress()" class="btn btn-primary float-right">Edit Address</button>
+      <button *ngIf="authService.user.address && authService.user.address.length > 0" (click)="placeOrder()" class="btn btn-primary float-right ml-2">Place Order</button>
+      <!-- <button *ngIf="authService.user.address && authService.user.address.length > 0" class="btn btn-primary" (click)="goBackToAddress()" style="float: right;">Back To Address</button> -->
+      <button *ngIf="authService.user.address && authService.user.address.length ===0" (click)="addNewAddress()" class="btn btn-primary float-right mt-4">Add Address</button>
+      <button  *ngIf="authService.user.address && authService.user.address.length > 0" (click)="editAddress()" class="btn btn-primary float-right">Edit Address</button>
     </div>
     <form class="col-sm-6 col-xs-12 mt-4" *ngIf="!authService.user || addNewAddressFlag" [formGroup]="addressForm">
       <div class="row">
@@ -136,11 +136,11 @@
     </div>
   </div>
 </div>
-<div class="container center-screen" *ngIf="orderPlaced">
+<div class="container center-screen" *ngIf="orderPlaced && lastOrder">
   <img src="../../../../../assets/img/3500833.png" class="img-responsive mb-2">
   <h2>Thank You!</h2>
-  <h3>Order #1234 Placed Successfully</h3>
-  <h3>Estimated Delivery Date: 22.02.19</h3>
+  <h3>Order # {{lastOrder.time}}{{lastOrder.orderNo}} Placed Successfully</h3>
+  <h3>Estimated Delivery {{lastOrder.orderDeliveryTime}}</h3>
   <h3>Cash on Delivery</h3>
   <p class="text-muted">
     Will keep you posted about the order via sms.
