@@ -83,8 +83,10 @@ export class CreateComponent implements OnInit {
       formData.append('benefits', this.createForm.value.benefits)
       if (this.data.action === 'Add') {
         this.productService.createProduct(formData).subscribe((data) => {
+          this.toast.success(`${this.data.data.config.page_key} added successfully`)
           this.dialogRef.close(true)
         }, (error) => {
+          this.toast.error(error)
           console.log(error)
         })
       }else{

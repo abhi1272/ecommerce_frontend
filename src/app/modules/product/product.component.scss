@@ -2,7 +2,7 @@
 .card{
   margin-bottom: 4vh;
   padding: 10px;
-  height: 60vh
+  height: 40vh
 }
 .prod{
   width: 100%;
@@ -233,4 +233,10 @@ font-size:14px;
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+}
+
+
+.align-cat{
+  display: inline-flex !important;
+  flex-direction: column !important;
 }

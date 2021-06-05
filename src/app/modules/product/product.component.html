@@ -7,18 +7,34 @@
     </ol>
   </nav>
   <br><br>
-    <div class="row">
-      <div class="col-md-3 col-sm-6 portfolio-item" *ngFor="let prod of productList">
-        <div class="card">
-          <a><img routerLink="{{prod.uuid}}" class="card-img-top"
-              [src]="prod.image" alt=""></a>
-          <div class="card-title text-center">
-            <a style="color: black;font-size: 1.1em; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" href="#">{{prod.medicine_name | uppercase}}</a>
+  <div class="row">
+    <div class="col-sm-3">
+      <label id="example-radio-group-label" class="ml-3"><h1>Select Category</h1></label>
+      <mat-selection-list #category [multiple]="false">
+        <mat-list-option *ngFor="let category of categories" [value]="category" (click)="getDataWithCategory(category)">
+          {{category}}
+        </mat-list-option>
+      </mat-selection-list>
+    </div>
+    <div class="col-sm-9">
+      <div class="row" *ngIf="productList && productList.length > 0">
+        <div class="col-md-4 col-sm-6 portfolio-item" *ngFor="let prod of productList">
+          <div class="card">
+            <a><img routerLink="{{prod.uuid}}" class="card-img-top"
+                [src]="prod.image" alt=""></a>
+            <div class="card-title text-center">
+              <a style="color: black;font-size: 1.1em; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" href="#">{{prod.medicine_name | uppercase}}</a>
+            </div>
+              <span style="padding: 5px;" class="ml-1">
+                MRP: &#8377; {{prod.MRP}}
+              </span>
           </div>
-            <span style="padding: 5px;" class="ml-1">
-              MRP: &#8377; {{prod.MRP}}
-            </span>
         </div>
       </div>
+      <div class="align-center" *ngIf="productList && productList.length === 0">
+          <img src="../../../assets/img/noproduct.png" class="ml-4" style="padding: 10vh;">
+      </div>
     </div>
+  </div>
+
 </div>
