@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  getCategoryDat(value): void {
+  getCategoryData(value): void {
     // this.sharedService.filterObj.filters.push({ name: 'category', value })
     this.router.navigate(['/product'], { queryParams: { category: value } })
   }
