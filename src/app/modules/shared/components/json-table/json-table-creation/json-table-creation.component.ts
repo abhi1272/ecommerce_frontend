@@ -271,12 +271,22 @@ export class JsonTableCreationComponent implements OnInit, OnDestroy {
   }
 
   delete(ele): any {
-    this.sharedService.deleteEntityData(this.configData.page_key, ele.uuid).subscribe((data) => {
-      this.toastr.success('Delete successful')
-      this.refreshData(true)
-    }, (error) => {
-      this.toastr.success(error)
-      console.log(error)
+    const confirmObject = {
+      page: this.configData.page_name,
+      action: 'confirm',
+      data: { config: { page_key: 'confirm', page_name: 'confirm' } }
+    }
+
+    this.sharedService.openDialog(confirmObject, CreateComponent, '400px').subscribe((data) => {
+      if (data) {
+        this.sharedService.deleteEntityData(this.configData.page_key, ele.uuid).subscribe((data) => {
+          this.toastr.success('Delete successful')
+          this.refreshData(true)
+        }, (error) => {
+          this.toastr.success(error)
+          console.log(error)
+        })
+      }
     })
   }
 

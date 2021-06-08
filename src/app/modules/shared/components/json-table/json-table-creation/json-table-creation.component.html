@@ -32,10 +32,8 @@
             <app-add-remove-col [colConfigData]="colConfigData" (sendCheckedData)="changeTableData($event)"></app-add-remove-col>
         </div>
     </div>
-
     <div class="mat-elevation-z8">
         <table mat-table [dataSource]="apiResultData" matSort (matSortChange)="sortData($event)">
-
             <ng-container *ngFor="let disCol of initColumns; let colIndex = index" matColumnDef="{{disCol.key}}">
                <!-- Checkbox Column -->
                 <ng-container *ngIf="disCol.name === 'select'">

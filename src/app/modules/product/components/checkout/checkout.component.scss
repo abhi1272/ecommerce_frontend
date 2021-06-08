@@ -12,6 +12,9 @@ body {
     font-size: 14px
 }
 
+input.ng-dirty.ng-invalid{border:1px solid red;}
+
+
 .container-fluid {
     margin-top: 70px
 }

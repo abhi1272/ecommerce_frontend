@@ -1,4 +1,4 @@
-<div mat-dialog-title>
+<div mat-dialog-title *ngIf="data.data.config && data.data.config.page_key !== 'confirm'">
   <div class="row">
     <div class="col-xs-12">
       <strong class="text-center">{{data.action}} {{data.data.config.page_name}}</strong>
@@ -153,6 +153,17 @@
     <div align=end>
       <button mat-raised-button mat-dialog-close (click)="cancel()">Cancel</button>
       <button mat-raised-button color="primary" type="submit" (click)="submit()" class="mr-4 ml-4 mb-2">Save</button>
+    </div>
+  </form>
+</div>
+<div mat-dialog-content *ngIf="data.data.config && data.data.config.page_key === 'confirm'">
+  <form>
+    <div class="form-group">
+      Do you sure, you want to delete {{data.page}}?
+    </div>
+    <div align=end>
+      <button mat-raised-button mat-dialog-close (click)="cancel()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" (click)="confirm()" class="mr-4 ml-4 mb-2">OK</button>
     </div>
   </form>
 </div>

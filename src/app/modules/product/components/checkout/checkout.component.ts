@@ -32,7 +32,7 @@ export class CheckoutComponent implements OnInit {
       city: new FormControl('', Validators.required),
       state: new FormControl('', Validators.required),
       pinCode: new FormControl('', Validators.required),
-      phoneNumber: new FormControl('', Validators.required),
+      phoneNumber: new FormControl('', [Validators.required, Validators.minLength(10)]),
     })
   }
 

@@ -145,4 +145,8 @@ export class CreateComponent implements OnInit {
      })
    }
 
+   public confirm(): void{
+     this.dialogRef.close(true)
+   }
+
 }

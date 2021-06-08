@@ -15,24 +15,28 @@ export class RegisterComponent implements OnInit {
   constructor(public authService: AuthService, private toastr: ToastrService,
               public router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.registerForm = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      confirmPassword: new FormControl('', Validators.required)
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      confirmPassword: new FormControl('', [Validators.required, Validators.minLength(8)])
     })
   }
 
-  public submit() {
-    this.authService.signUP(this.registerForm.value).subscribe((data) => {
-      localStorage.setItem('user', JSON.stringify(data['data']['newUser']))
-      this.toastr.success(data['message'])
-      this.router.navigate(['/home'])
-    }, (error) => {
-      this.toastr.success(error)
-    })
+  public submit(): void {
+    if (this.registerForm.value.password !== this.registerForm.value.confirmPassword) {
+      this.toastr.error('Both Password must be same')
+    } else {
+      this.authService.signUP(this.registerForm.value).subscribe((data) => {
+        localStorage.setItem('user', JSON.stringify(data['data']['newUser']))
+        this.toastr.success(data['message'])
+        this.router.navigate(['/login'])
+      }, (error) => {
+        this.toastr.success(error)
+      })
+    }
   }
 
 }

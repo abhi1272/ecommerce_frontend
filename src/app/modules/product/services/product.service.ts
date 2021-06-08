@@ -42,17 +42,13 @@ export class ProductService {
   }
 
 
-  // public sendEmail(emailBody) {
-  //   console.log('send email api called')
-  //   let myResponse = this._http.post(this.baseUrl + '/products/mail', emailBody, {
-  //     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-  //   })
-  //     .pipe(
-  //       retry(1),
-  //       catchError(this.handleError)
-  //     );
-  //   return myResponse
-  // }
+  public sendEmail(emailBody) {
+    console.log('send email api called')
+    let myResponse = this._http.post(this.baseUrl + '/product/mail', emailBody, {
+      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+    })
+    return myResponse
+  }
 
   // public handleError(error: HttpErrorResponse) {
   //   let errorMessage = '';
